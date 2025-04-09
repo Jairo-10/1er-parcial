@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MenuService } from '../../services/menu/menu.component';
+
 
 @Component({
   selector: 'app-header',
@@ -7,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  constructor(private menuService: MenuService) {}
 
+  toggleSidebar(): void {
+    this.menuService.toggleMenu(); // Alternar el menú cuando se presiona el botón hamburguesa
+  }
 }
