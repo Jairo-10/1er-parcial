@@ -63,7 +63,7 @@
 
     <!-- Tabla de usuarios -->
     <div class="bg-white shadow-md rounded">
-        <table class="w-full text-left border-collapse">
+        <table class="w-full text-left border-collapse text-sm"> <!-- Añadir "text-sm" para fuente más pequeña -->
             <thead>
                 <tr class="bg-gray-200">
                     <th class="py-2 px-4 border-b">ID</th>
@@ -73,6 +73,7 @@
                     <th class="py-2 px-4 border-b">Dirección</th>
                     <th class="py-2 px-4 border-b">Fecha de Nacimiento</th>
                     <th class="py-2 px-4 border-b">Rol</th>
+                    <th class="py-2 px-4 border-b">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,6 +85,16 @@
                     <td class="py-2 px-4 border-b">{{ user.address }}</td>
                     <td class="py-2 px-4 border-b">{{ user.birthDate }}</td>
                     <td class="py-2 px-4 border-b">{{ user.role }}</td>
+                    <td class="py-2 px-4 border-b">
+                        <button class="bg-yellow-500 text-white py-1 px-2 rounded hover:bg-yellow-600 mr-2"
+                            (click)="editUser(user)">
+                            Editar
+                        </button>
+                        <button class="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                            (click)="deleteUser(user.id)">
+                            Eliminar
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

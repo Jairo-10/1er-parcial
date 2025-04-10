@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importar CommonModule para *ngIf
-import { FormsModule } from '@angular/forms'; // Importar FormsModule para [(ngModel)]
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
-  standalone: true, // Declarar componente independiente
-  imports: [CommonModule, FormsModule], // Importar CommonModule y FormsModule
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
 })
@@ -58,8 +58,24 @@ export default class UserComponent {
 
   addUser() {
     if (this.newUser.name.trim() && this.newUser.email.trim()) {
-      this.users.push({ ...this.newUser });
+      const index = this.users.findIndex(user => user.id === this.newUser.id);
+
+      if (index !== -1) {
+        this.users[index] = { ...this.newUser };
+      } else {
+        this.users.push({ ...this.newUser });
+      }
+
       this.toggleForm();
     }
+  }
+
+  editUser(user: any) {
+    this.showForm = true; // Mostrar formulario
+    this.newUser = { ...user }; // Cargar datos del usuario seleccionado
+  }
+  
+  deleteUser(id: number) {
+    this.users = this.users.filter(user => user.id !== id); // Eliminar usuario por ID
   }
 }
