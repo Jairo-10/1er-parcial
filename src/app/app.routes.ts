@@ -4,6 +4,7 @@ export const routes: Routes = [
     {
         path: '',
         loadComponent: () => import('./shared/components/layout/layout.component'),
+
         children: [
             {
                 path: 'dashboard',
@@ -31,8 +32,9 @@ export const routes: Routes = [
                 pathMatch: 'full'
             }
         ]
+
     },
-    //Redireccionar al Dashboard si direccionan a cualquier ruta
+    //Redireccionar al Dashboard si direccionan a cualquier ruta des conocida
     {
         path: '**',
         redirectTo: 'dashboard'
